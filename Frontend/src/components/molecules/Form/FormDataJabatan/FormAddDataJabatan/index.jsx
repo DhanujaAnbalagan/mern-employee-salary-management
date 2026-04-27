@@ -27,6 +27,18 @@ const FormAddDataJabatan = () => {
 
     const submitDataJabatan = (e) => {
         e.preventDefault();
+
+        // LF-102: Reject any negative salary values before hitting the server
+        if (Number(gajiPokok) < 0 || Number(tjTransport) < 0 || Number(uangMakan) < 0) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Input Tidak Valid',
+                text: 'Gaji Pokok, Tunjangan Transport, dan Uang Makan tidak boleh bernilai negatif.',
+                confirmButtonText: 'Ok',
+            });
+            return;
+        }
+
         const newFormData = new FormData();
         newFormData.append('nama_jabatan', namaJabatan);
         newFormData.append('gaji_pokok', gajiPokok);
@@ -69,6 +81,7 @@ const FormAddDataJabatan = () => {
             });
 
     };
+
 
     const handleChange = (e) => {
         setFormData({

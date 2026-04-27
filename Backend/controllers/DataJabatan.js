@@ -56,6 +56,12 @@ export const createDataJabatan = async (req, res) => {
     const {
         id_jabatan, nama_jabatan, gaji_pokok, tj_transport, uang_makan
     } = req.body;
+
+    // LF-102: Salary values must not be negative
+    if (Number(gaji_pokok) < 0 || Number(tj_transport) < 0 || Number(uang_makan) < 0) {
+        return res.status(400).json({ msg: "Invalid salary: salary values must not be negative." });
+    }
+
     try {
         if (req.hak_akses === "admin") {
             await DataJabatan.create({
@@ -83,6 +89,7 @@ export const createDataJabatan = async (req, res) => {
     }
 
 }
+
 
 // method untuk update data jabatan
 export const updateDataJabatan = async (req, res) => {

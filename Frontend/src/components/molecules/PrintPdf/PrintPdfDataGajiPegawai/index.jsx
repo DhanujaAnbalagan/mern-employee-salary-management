@@ -214,7 +214,7 @@ const PrintPdfDataGajiPegawai = () => {
                                     <span>{nama_pegawai}</span>
                                 </div>
                                 <div className="font-medium text-black dark:text-white">
-                                    <span className="text-right">Karawang, {`${new Date().getDate()} ${bulan} ${tahun}`}</span>
+                                    <span className="text-right">Karawang, {new Date().toLocaleDateString("en-GB")}</span>
                                     <br />
                                     <span>Finance</span>
                                     <br />
@@ -223,7 +223,7 @@ const PrintPdfDataGajiPegawai = () => {
                                 </div>
                             </div>
                             <div className="italic text-black dark:text-white mt-30">
-                                Dicetak Pada : {`${new Date().getDate()} ${bulan} ${tahun}`}
+                                Dicetak Pada : {new Date().toLocaleDateString("en-GB")}
                             </div>
                         </div>
                     );

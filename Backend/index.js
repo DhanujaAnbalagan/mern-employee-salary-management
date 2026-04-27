@@ -9,6 +9,7 @@ import FileUpload from 'express-fileupload';
 
 import UserRoute from './routes/UserRoute.js';
 import AuthRoute from './routes/AuthRoute.js';
+import OvertimeRoute from './routes/OvertimeRoute.js';
 
 const app = express();
 
@@ -47,6 +48,7 @@ app.use(express.static("public"));
 
 app.use(UserRoute);
 app.use(AuthRoute);
+app.use(OvertimeRoute);
 
 // store.sync();
 

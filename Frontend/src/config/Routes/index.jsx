@@ -19,7 +19,8 @@ import {
   DetailDataGaji,
   PrintPdfSlipGaji,
   PrintPdfLaporanAbsensi,
-  PrintPdfDataGajiPegawai
+  PrintPdfDataGajiPegawai,
+  FormAddDataLembur
 } from '../../components';
 import {
   DataPegawai,
@@ -95,6 +96,12 @@ const AppRoutes = () => {
       <Route
         path='/data-potongan/form-data-potongan/edit/:id'
         element={<FormEditDataPotongan />} />
+
+      {/* Lembur (Overtime) Admin */}
+      <Route
+        path='/data-lembur/form-data-lembur/add'
+        element={<FormAddDataLembur />}
+      />
       <Route
         path='/data-gaji'
         element={<DataGaji />}

@@ -52,6 +52,21 @@ const DataPegawai = () => {
         setSearchKeyword(event.target.value);
     };
 
+    // LF-104: build and trigger a CSV download from the current employee list
+    const downloadCSV = () => {
+        const rows = dataPegawai.map((e) =>
+            `${e.nama_pegawai},${e.designation || '-'},${e.status},${e.hak_akses}`
+        );
+        const csv = 'Nama Pegawai,Designation,Status,Hak Akses\n' + rows.join('\n');
+        const blob = new Blob([csv], { type: 'text/csv' });
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'data_pegawai.csv';
+        a.click();
+        window.URL.revokeObjectURL(url);
+    };
+
     const handleFilterStatus = (event) => {
         setFilterStatus(event.target.value);
     };
@@ -155,6 +170,13 @@ const DataPegawai = () => {
                     </span>
                 </ButtonOne>
             </Link>
+            {/* LF-104: Download CSV button */}
+            <button
+                onClick={downloadCSV}
+                className="mt-2 inline-flex items-center gap-2 rounded bg-meta-3 py-2 px-4 text-white font-medium hover:bg-opacity-90"
+            >
+                Download CSV
+            </button>
             <div className="rounded-sm border border-stroke bg-white px-5 pt-6 pb-2.5 shadow-default dark:border-strokedark dark:bg-boxdark sm:px-7.5 xl:pb-1 mt-6">
                 <div className="flex justify-between items-center mt-4 flex-col md:flex-row md:justify-between">
                     <div className="relative flex-1 md:mr-2 mb-4 md:mb-0">
@@ -198,6 +220,8 @@ const DataPegawai = () => {
                                 <th className="py-4 px-4 font-medium text-black dark:text-white">Jenis Kelamin</th>
                                 <th className="py-4 px-4 font-medium text-black dark:text-white">Tanggal Masuk</th>
                                 <th className="py-4 px-4 font-medium text-black dark:text-white">Status</th>
+                                {/* LF-103: Designation column */}
+                                <th className="py-4 px-4 font-medium text-black dark:text-white">Designation</th>
                                 <th className="py-4 px-4 font-medium text-black dark:text-white">Hak Akses</th>
                                 <th className="py-4 px-4 font-medium text-black dark:text-white">Aksi</th>
                             </tr>
@@ -226,10 +250,14 @@ const DataPegawai = () => {
                                             <p className="text-black dark:text-white">{data.jenis_kelamin}</p>
                                         </td>
                                         <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
-                                            <p className="text-black dark:text-white">{data.tanggal_masuk}</p>
+                                            <p className="text-black dark:text-white">{new Date(data.tanggal_masuk).toLocaleDateString("en-GB")}</p>
                                         </td>
                                         <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
                                             <p className="text-black dark:text-white">{data.status}</p>
+                                        </td>
+                                        {/* LF-103: Designation data cell */}
+                                        <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
+                                            <p className="text-black dark:text-white">{data.designation || '-'}</p>
                                         </td>
                                         <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
                                             <p className="text-black dark:text-white">{data.hak_akses}</p>

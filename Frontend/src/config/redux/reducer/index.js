@@ -3,6 +3,7 @@ export * from './dataGajiPegawaiPrintReducer';
 export * from './dataGajiReducer';
 export * from './dataJabatanReducer';
 export * from './dataKehadiranReducer';
+export * from './dataLemburReducer';
 export * from './dataPegawaiReducer';
 export * from './dataPotonganReducer';
 export * from './laporanAbsensiReducer';

@@ -10,6 +10,7 @@ import FormAddDataPegawai from "./Form/FormDataPegawai/FormAddDataPegawai";
 import FormEditDataPegawai from "./Form/FormDataPegawai/FormEditDataPegawai";
 import FormAddDataPotongan from "./Form/FormDataPotongan/FormAddDataPotongan";
 import FormEditDataPotongan from "./Form/FormDataPotongan/FormEditDataPotongan";
+import FormAddDataLembur from "./Form/FormDataLembur/FormAddDataLembur";
 import Header from './Header';
 import Navbar from './Navbar';
 import NotFound from './NotFound';
@@ -34,6 +35,7 @@ export {
     FormEditDataPegawai,
     FormAddDataPotongan,
     FormEditDataPotongan,
+    FormAddDataLembur,
     Header,
     Navbar,
     NotFound,
